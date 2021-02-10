@@ -115,12 +115,18 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     }
     
     public String lookupEntry() {
-        int m = Integer.parseInt(month.getText());
-        int d = Integer.parseInt(day.getText());
-        int y = Integer.parseInt(year.getText());
-        outputArea.setText("looking up record ...");
-        String message = myAthletes.lookupEntry(d, m, y);
-        return message;
+        try {
+            int m = Integer.parseInt(month.getText());
+            int d = Integer.parseInt(day.getText());
+            int y = Integer.parseInt(year.getText());
+            outputArea.setText("looking up record ...");
+            String message = myAthletes.lookupEntry(d, m, y);
+            return message;
+        } catch (Exception ex){
+            System.out.println(ex);
+            String message = "Please enter the date in DD/MM/YYYY format";
+            return message;
+        }
     }
     
     public String lookupAllByDate(){
@@ -133,7 +139,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
             return message;
         } catch (Exception ex){
             System.out.println(ex);
-            String message = "You haven't entered a valid name or date correctly.\nEnsure that you only use Integers i.e. 1, 2, 3, 4, etc...";
+            String message = "Please enter the date in DD/MM/YYYY format"; 
             return message;
         }
     }
